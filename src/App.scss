@@ -1,0 +1,176 @@
+@import './assets/styles/_variables';
+
+.api {
+  height: 100%;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: 912px;
+  grid-template-rows: 48px 1fr;
+  justify-content: center;
+  gap: 40px;
+
+  &__search {
+    padding: 0px 20px;
+    position: relative;
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    &-input {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      border-radius: 10px;
+      background: transparent;
+      outline: none;
+      border: none;
+      font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      color: $text-primary;
+      font-weight: 500;
+      font-size: 16px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      cursor: pointer;
+      transition: all .2s ease-out;
+      &::placeholder {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 500;
+        color: $text-secondary;
+      }
+      &:focus {
+        cursor:text;
+      }
+      &:focus ~ span {
+        background: $search-bg-focus;
+      }
+      &:hover ~ span {
+        border: 2px solid $search-border;
+      }
+    }
+    & > span {
+      position: absolute;
+      left: 0px;
+      top: 0px;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      border-radius: 10px;
+      border: 1px solid $search-border;
+      background: $search-bg;
+      transition: all .1s ease-out;
+    }
+    &-btn {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: transparent;
+      outline: none;
+      border: none;
+      color: $text-secondary;
+      transition: color .2s ease-out;
+      &:hover {
+        color: $text-primary;
+      }
+      & > svg {
+        width: 24px;
+        height: 24px;
+      }
+    }
+  }
+  &__table {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    &-empty {
+      font-size: 18px;
+      font-weight: 500;
+      color: $text-accent-primary;
+      text-align: center;
+    }
+    &-status {
+      font-size: 18px;
+      font-weight: 700;
+      color: $text-error;
+      text-align: center;
+    }
+    &-header {
+      padding: 15px 10px;
+      border-bottom: 2px solid $search-border;
+    }
+    &-count {
+      font-size: 16px;
+      font-weight: 400;
+      color: $text-secondary;
+      & > big {
+        font-size: 18px;
+        font-weight: 700;
+        color: $text-accent-primary;
+      }
+    }
+    &-row {
+      display: grid;
+      grid-template-columns: minmax(200px, 1fr) minmax(200px, 1fr) minmax(200px, 1fr) minmax(200px, 1fr);
+      padding: 15px 10px;
+      border-bottom: 1px solid $search-border;
+      & p, & a {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+        line-height: 24px;
+      }
+    }
+    &-link, &-owner {
+      font-size: 16px;
+      font-weight: 500;
+      color: $text-accent-primary;
+      text-decoration: none;
+      &:hover {
+        text-decoration: underline;
+      }
+      &:focus {
+        outline: none;
+        text-decoration: underline;
+      }
+    }
+    &-column {
+      font-size: 16px;
+      font-weight: 400;
+      color: $text-secondary;
+    }
+    &-loading {
+      margin: 0 auto;
+      position: relative;
+      display: block;
+      border-radius: 50%;
+      width: 64px;
+      height: 64px;
+      border: 2px solid $search-bg-focus;
+      border-left: 2px solid $text-accent-primary;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .api {
+    grid-template-columns: 1fr;
+    &__table {
+      overflow: auto;
+    }
+  }
+}
